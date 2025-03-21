@@ -77,7 +77,7 @@ use LaravelExcelExtended\Concerns\WithDropdowns;
 
 class ProductsExport implements ShouldAutoSize, WithMaxWidth {
     public function dropdowns(){
-        [
+        return [
             'B2:B100' => [ // product size
                 'values' => [
                     'XS',
@@ -86,11 +86,11 @@ class ProductsExport implements ShouldAutoSize, WithMaxWidth {
                     'L'
                 ]
             ],
-        ]
+        ];
     }
 }
 ```
-But this approach has limitations refer [phpspreadsheet docs](https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-data-validation-on-a-cell)
+But this approach has limitations refer [phpspreadsheet data validation](https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-data-validation-on-a-cell)
 
 >It is important to remember that any string participating in an Excel formula is allowed to be maximum 255 characters (not bytes). This sets a limit on how many items you can have in the string "Item A,Item B,Item C". Therefore it is normally a better idea to type the item values directly in some cell range, say A1:A3, and instead use, say, ```$validation->setFormula1('\'Sheet title\'!$A$1:$A$3')```. Another benefit is that the item values themselves can contain the comma , character itself.
 
@@ -110,12 +110,12 @@ use LaravelExcelExtended\Helpers\Excel;
 class ProductsExport implements WithDropdowns {
     public function dropdowns(){
         $categories = Category::all(['id', 'name']);
-        [
+        return [
             'B2:B100' => [
                 'values' => $category->map(fn ($c) => $c->name),
                 'strategy' => Excel::LIST_STRATEGY_HIDDEN_COLUMN
             ],
-        ]
+        ];
     }
 }
 ```
