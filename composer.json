@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "kahil-raghed/laravel-excel-extended",
     "description": "laravel excel additional usefull futures",
-    "version": "1.0.0-beta",
+    "version": "1.0.0-beta2",
     "support": {
         "source": "https://github.com/kahil-raghed/laravel-excel-extended"
     },
@@ -41,7 +41,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Raghed\\LaravelExcelExtended\\Providers\\FuturesProvider"
+                "LaravelExcelExtended\\Providers\\FuturesProvider"
             ]
         }
     }
