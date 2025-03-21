@@ -11,14 +11,16 @@ class WithMaxWidthHandler {
     public function __invoke(WithMaxWidth $export, AfterSheet $ev)
     {   
         $maxWidth = $export->maxWidth();
+        $sheet = $ev->sheet->getDelegate();
+        $sheet->calculateColumnWidths();
         if (is_float($maxWidth)) {
-            $columns = $ev->sheet->getDelegate()->getColumnDimensions();
+            $columns = $sheet->getColumnDimensions();
             foreach ($columns as $col) {
                 $this->applyMaxWidth($col, $maxWidth);
             }
         } else if (is_array($maxWidth)) {
             foreach ($maxWidth as $colId => $colMaxWidth) {
-                $col = $ev->sheet->getDelegate()->getColumnDimension($colId);
+                $col = $sheet->getColumnDimension($colId);
                 $this->applyMaxWidth($col, $colMaxWidth);
             }
         }
