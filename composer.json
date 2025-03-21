@@ -1,0 +1,44 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "kahil-raghed/laravel-excel-extended",
+    "description": "laravel excel additional usefull futures",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "php",
+        "phpspreadsheet",
+        "phpexcel",
+        "excel",
+        "csv",
+        "export",
+        "import",
+        "batch",
+        "dropdown"
+    ],
+    "require": {
+        "php": "^7.2||^8.0",
+        "maatwebsite/excel": "^3.0",
+        "phpoffice/phpspreadsheet": "^1.29",
+        "illuminate/support": "5.8.*||^6.0||^7.0||^8.0||^9.0||^10.0||^11.0||^12.0"
+    },
+    
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LaravelExcelExtended\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raghed Kahil",
+            "email": "kahilraghed@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Raghed\\LaravelExcelExtended\\Providers\\FuturesProvider"
+            ]
+        }
+    }
+}
