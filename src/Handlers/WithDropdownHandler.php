@@ -2,19 +2,19 @@
 
 namespace LaravelExcelExtended\Handlers;
 
-use Maatwebsite\Excel\Events\AfterSheet;
-use LaravelExcelExtended\Concerns\WithDropdowns;
+use LaravelExcelExtended\Concerns\WithDropdown;
 use LaravelExcelExtended\Helpers\Excel;
+use Maatwebsite\Excel\Sheet;
 
-class WithDropdownsHandler
+class WithDropdownHandler
 {
-    public function __invoke(WithDropdowns $export, AfterSheet $ev)
+    public function __invoke(WithDropdown $export, Sheet $sheet)
     {
-        $dropdowns = $export->dropdowns();
+        $dropdowns = $export->dropdown();
 
         foreach ($dropdowns as $range => $dropdown) {
             Excel::applyListValidation(
-                sheet: $ev->getSheet(),
+                sheet: $sheet,
                 cells: $range,
                 values: $dropdown['values'] ?? [],
                 allowBlank: $dropdown['allowBlank'] ?? true,

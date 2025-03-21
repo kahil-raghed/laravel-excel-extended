@@ -75,7 +75,7 @@ namespace App\Exports;
 use LaravelExcelExtended\Concerns\WithDropdowns;
 
 
-class ProductsExport implements ShouldAutoSize, WithMaxWidth {
+class ProductsExport implements WithDropdowns {
     public function dropdowns(){
         return [
             'B2:B100' => [ // product size

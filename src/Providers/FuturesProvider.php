@@ -1,20 +1,20 @@
 <?php
 
-namespace Raghed\LaravelExcelExtended\Providers;
+namespace LaravelExcelExtended\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Excel;
-use Raghed\LaravelExcelExtended\Concerns\WithDropdowns;
-use Raghed\LaravelExcelExtended\Concerns\WithMaxWidth;
-use Raghed\LaravelExcelExtended\Handlers\WithDropdownsHandler;
-use Raghed\LaravelExcelExtended\Handlers\WithMaxWidthHandler;
+use LaravelExcelExtended\Concerns\WithDropdown;
+use LaravelExcelExtended\Concerns\WithMaxWidth;
+use LaravelExcelExtended\Handlers\WithDropdownHandler;
+use LaravelExcelExtended\Handlers\WithMaxWidthHandler;
 
 class FuturesProvider extends ServiceProvider
 {
     public function register()
     {
         Excel::extend(WithMaxWidth::class, new WithMaxWidthHandler(), AfterSheet::class);
-        Excel::extend(WithDropdowns::class, new WithDropdownsHandler(), AfterSheet::class);
+        Excel::extend(WithDropdown::class, new WithDropdownHandler(), AfterSheet::class);
     }
 }

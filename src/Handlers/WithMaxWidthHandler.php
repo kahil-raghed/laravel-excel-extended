@@ -3,15 +3,15 @@
 namespace LaravelExcelExtended\Handlers;
 
 use LaravelExcelExtended\Concerns\WithMaxWidth;
-use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\ColumnDimension;
 
 class WithMaxWidthHandler {
 
-    public function __invoke(WithMaxWidth $export, AfterSheet $ev)
+    public function __invoke(WithMaxWidth $export, Sheet $sheet)
     {   
         $maxWidth = $export->maxWidth();
-        $sheet = $ev->sheet->getDelegate();
+        $sheet = $sheet->getDelegate();
         $sheet->calculateColumnWidths();
         if (is_float($maxWidth)) {
             $columns = $sheet->getColumnDimensions();

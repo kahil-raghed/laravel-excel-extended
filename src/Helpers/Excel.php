@@ -71,13 +71,13 @@ class Excel
         string $error = 'Value is not in list.',
         string $promptTitle = 'Pick from list',
         string $prompt = 'Please pick a value from the drop-down list.',
-        string $strategy = static::LIST_STRATEGY_SIMPLE,
+        string $strategy = null,
 
     ) {
-
+        if ($strategy === null) {
+            $strategy = static::LIST_STRATEGY_SIMPLE;
+        }
         $sheet = $sheet->getDelegate();
-        Coordinate::coordinateIsRange($cells);
-
         
         switch ($strategy) {
             case static::LIST_STRATEGY_HIDDEN_COLUMN:
@@ -94,6 +94,7 @@ class Excel
                 break;
             case static::LIST_STRATEGY_SIMPLE;
                 $formula = '"' . implode(',', $values) . '"';
+                break;
             default:
                 throw new Exception("Unknown list strategy: $strategy");
                 break;

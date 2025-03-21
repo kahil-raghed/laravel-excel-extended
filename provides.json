@@ -1,0 +1,5 @@
+{
+    "providers": [
+      "LaravelExcelExtended\\Providers\\FuturesProvider"
+    ]
+}
