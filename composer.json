@@ -2,6 +2,10 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "kahil-raghed/laravel-excel-extended",
     "description": "laravel excel additional usefull futures",
+    "version": "1.0.0-beta",
+    "support": {
+        "source": "https://github.com/kahil-raghed/laravel-excel-extended"
+    },
     "type": "library",
     "keywords": [
         "laravel",
