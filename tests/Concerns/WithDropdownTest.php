@@ -65,5 +65,9 @@ class WithDropdownTest extends TestCase
         $this->assertEquals('Test error', $validationFull->getError());
         $this->assertEquals('Test prompt title', $validationFull->getPromptTitle());
         $this->assertEquals('Test prompt', $validationFull->getPrompt());
+        
+        $this->assertEquals('X', $sheet->getCell('C1')->getValue());
+        $this->assertEquals('Y', $sheet->getCell('C2')->getValue());
+        $this->assertEquals('Z', $sheet->getCell('C3')->getValue());
     }
 }
