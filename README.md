@@ -65,18 +65,18 @@ class ProductsExport implements ShouldAutoSize, WithMaxWidth {
 
 ### Dropdown lists
 
-You can create interactive drop down lists using `WithDropdowns` concern.
+You can create interactive drop down lists using `WithDropdown` concern.
 
 
 
 ```php
 namespace App\Exports;
 
-use LaravelExcelExtended\Concerns\WithDropdowns;
+use LaravelExcelExtended\Concerns\WithDropdown;
 
 
-class ProductsExport implements WithDropdowns {
-    public function dropdowns(){
+class ProductsExport implements WithDropdown {
+    public function dropdown(){
         return [
             'B2:B100' => [ // product size
                 'values' => [
@@ -103,12 +103,12 @@ it stores allowed values in a hidden column after the data.
 namespace App\Exports;
 
 use Models\Category;
-use LaravelExcelExtended\Concerns\WithDropdowns;
+use LaravelExcelExtended\Concerns\WithDropdown;
 use LaravelExcelExtended\Helpers\Excel;
 
 
-class ProductsExport implements WithDropdowns {
-    public function dropdowns(){
+class ProductsExport implements WithDropdown {
+    public function dropdown(){
         $categories = Category::all(['id', 'name']);
         return [
             'B2:B100' => [
