@@ -59,6 +59,33 @@ class Excel
         }
     }
 
+    static function applyNumberValidation(
+        Sheet $sheet,
+        string $cells,
+        string $type = DataValidation::TYPE_DECIMAL,
+        bool $allowBlank = true,
+        bool $showErrorMessage = true,
+        bool $showInputMessage = true,
+        string $errorTitle = 'Input error',
+        string $error = 'Value is not a number',
+        string $promptTitle = 'Allowed input',
+        string $prompt = 'Only numbers are allowed.',
+        int $min = -INF,
+        int $max = INF
+    ) {
+        $sheet = $sheet->getDelegate();
+
+        $validation = $sheet->getDataValidation($cells);
+
+        $validation->setType($type); // Restricts input to whole numbers
+        $validation->setErrorStyle(DataValidation::STYLE_STOP);
+        $validation->setAllowBlank($allowBlank);
+        $validation->setShowInputMessage($showInputMessage);
+        $validation->setShowErrorMessage($showErrorMessage);
+        $validation->setErrorTitle($errorTitle);
+        $validation->setError($error);
+    }
+
     static function applyListValidation(
         Sheet $sheet,
         string $cells,
@@ -78,7 +105,7 @@ class Excel
             $strategy = static::LIST_STRATEGY_SIMPLE;
         }
         $sheet = $sheet->getDelegate();
-        
+
         switch ($strategy) {
             case static::LIST_STRATEGY_HIDDEN_COLUMN:
                 $columnIndex = Coordinate::columnIndexFromString($sheet->getHighestColumn()) + 1;
@@ -97,10 +124,6 @@ class Excel
                 break;
             default:
                 throw new Exception("Unknown list strategy: $strategy");
-                break;
-        }
-        if ($strategy == static::LIST_STRATEGY_SIMPLE) {
-        } elseif ($strategy == static::LIST_STRATEGY_HIDDEN_COLUMN) {
         }
 
 

@@ -119,3 +119,50 @@ class ProductsExport implements WithDropdown {
     }
 }
 ```
+
+### Validation 
+
+```php
+namespace App\Exports;
+
+use Models\Category;
+use LaravelExcelExtended\Concerns\WithExcelValidation;
+use LaravelExcelExtended\Helpers\Excel;
+use LaravelExcelExtended\Constants\ValidationTypes;
+
+class ProductsExport implements WithExcelValidation {
+    public function excelValidation(){
+        $categories = Category::all(['id', 'name']);
+        return [
+            'B2:B100' => [
+                'type' => ValidationTypes::LIST,
+                'values' => $category->map(fn ($c) => $c->name),
+                'strategy' => Excel::LIST_STRATEGY_HIDDEN_COLUMN
+            ],
+            'C2:C100' => [
+                'type' => ValidationTypes::NUMBER
+            ],
+        ];
+    }
+}
+```
+
+#### Validation Options:
+* `type`: list, number
+* `values`: LISTS ONLY
+* `allowBlank`: boolean
+* `showErrorMessage`: boolean
+* `showInputMessage`: boolean
+* `showDropDown`: boolean, LISTS ONLY
+* `errorTitle`
+* `error`
+* `promptTitle`
+* `prompt`
+* `strategy`: LISTS ONLY, `simple` or `hidden-column`
+
+# Changelog
+#### 1.0.0
+* Initial library
+#### 1.1.0
+* Add `WithExcelValidation` concern
+* Add 

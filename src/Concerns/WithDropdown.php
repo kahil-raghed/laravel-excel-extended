@@ -3,6 +3,9 @@
 
 namespace LaravelExcelExtended\Concerns;
 
+/**
+ * @deprecated use WithExcelValidation
+ */
 
 interface WithDropdown
 {

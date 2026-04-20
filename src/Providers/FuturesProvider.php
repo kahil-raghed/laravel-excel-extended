@@ -3,6 +3,8 @@
 namespace LaravelExcelExtended\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelExcelExtended\Concerns\WithExcelValidation;
+use LaravelExcelExtended\Handlers\WithExcelValidationHandler;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Excel;
 use LaravelExcelExtended\Concerns\WithDropdown;
@@ -16,5 +18,6 @@ class FuturesProvider extends ServiceProvider
     {
         Excel::extend(WithMaxWidth::class, new WithMaxWidthHandler(), AfterSheet::class);
         Excel::extend(WithDropdown::class, new WithDropdownHandler(), AfterSheet::class);
+        Excel::extend(WithExcelValidation::class, new WithExcelValidationHandler(), AfterSheet::class);
     }
 }
